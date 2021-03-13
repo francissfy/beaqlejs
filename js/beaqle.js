@@ -513,7 +513,8 @@ $.extend({ alert: function (message, title) {
           "SupervisorContact": "",
           "RandomizeTestOrder": false,
           "MaxTestsPerRun": -1,
-          "AudioRoot": ""
+          "AudioRoot": "",
+          "CateMapping": {"A": "A", "B": "B"}
         }
       
         for (var property in defaults) {
@@ -885,6 +886,7 @@ $.extend({ alert: function (message, title) {
     ListeningTest.prototype.DownloadTestResults = function () {
 
         var UserObj = new Object();
+        UserObj.CateMapping = this.TestConfig.CateMapping;
         UserObj.UserName = $('#UserName').val();
         UserObj.UserEmail = $('#UserEMail').val();
         UserObj.UserComment = $('#UserComment').val();
@@ -1468,7 +1470,8 @@ PrefTest.prototype.formatResults = function () {
             cell = row.insertCell(-1);
             cell.innerHTML = this.TestConfig.Testsets[i].Name + "("+this.TestConfig.Testsets[i].TestID+")";
             cell = row.insertCell(-1);
-            this.TestState.EvalResults[i].PresentationOrder = "A=" + this.TestState.FileMappings[i].A + ", B=" + this.TestState.FileMappings[i].B;
+            this.TestState.EvalResults[i].PresentationOrder = "A=" + this.TestConfig.CateMapping[this.TestState.FileMappings[i].A] + 
+                ", B=" + this.TestConfig.CateMapping[this.TestState.FileMappings[i].B];
             cell.innerHTML = this.TestState.EvalResults[i].PresentationOrder;
             cell = row.insertCell(-1);
             this.TestState.EvalResults[i].Runtime   = this.TestState.Runtime[i];
