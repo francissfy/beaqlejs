@@ -887,6 +887,7 @@ $.extend({ alert: function (message, title) {
 
         var UserObj = new Object();
         UserObj.CateMapping = this.TestConfig.CateMapping;
+        UserObj.Testsets = this.TestConfig.Testsets;
         UserObj.UserName = $('#UserName').val();
         UserObj.UserEmail = $('#UserEMail').val();
         UserObj.UserComment = $('#UserComment').val();

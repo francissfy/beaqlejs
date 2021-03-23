@@ -7,7 +7,7 @@ def main(args: argparse.Namespace):
     audio_path = args.audio_dir
     cates = [p for p in os.listdir(audio_path) if p[0] != "."]
     for c in args.cates:
-        assert c in cates, f"{c} not found"
+        assert c in cates
     cates = args.cates
     assert len(cates) == 2, "AB test only support two categories"
     files = {}
@@ -53,10 +53,10 @@ def main(args: argparse.Namespace):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--audio-dir", type=str, default="./audio")
-    parser.add_argument("--cates", type=str, nargs="+", default=[])
+    parser.add_argument("--audio-dir", type=str, default="./audio/gl")
+    parser.add_argument("--cates", type=str, nargs="+")
     parser.add_argument("--offset", type=int, default=0)
-    parser.add_argument("--end", type=int, default=None)
-    parser.add_argument("--config-file", type=str, default="./config/config/pref_test.js")
+    parser.add_argument("--end", type=int, default=10)
+    parser.add_argument("--config-file", type=str, default="./config/pref_test.js")
     args = parser.parse_args()
     main(args)
